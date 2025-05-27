@@ -1,3 +1,4 @@
+import 'package:bank_farming/src/constant/color_constant.dart';
 import 'package:flutter/cupertino.dart';
 
 class SwitchExample extends StatefulWidget {
@@ -13,6 +14,7 @@ class _SwitchExampleState extends State<SwitchExample> {
   @override
   Widget build(BuildContext context) {
     return CupertinoSwitch(
+      activeTrackColor: colOne,
       value: _switchValue,
       onChanged: (bool newValue) {
         setState(() {

@@ -8,7 +8,6 @@ import 'package:go_router/go_router.dart';
 import '../constant/color_constant.dart';
 import '../routing/route_names.dart';
 
-
 class CarouselImageSlider extends StatelessWidget {
   const CarouselImageSlider({
     super.key,
@@ -25,11 +24,15 @@ class CarouselImageSlider extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double screenHeight = ScreenUtil().screenHeight;
+    double screenWidth = ScreenUtil().screenWidth;
+    bool trueScreen = screenHeight >= 915.0 || screenWidth >= 412;
+
     return CarouselSlider(
       carouselController: carouselController,
       options: CarouselOptions(
         height: double.infinity.sp,
-        autoPlay: true,
+        autoPlay: false,
         enlargeCenterPage: true,
         enableInfiniteScroll: true,
         viewportFraction: 1.0,
@@ -69,19 +72,21 @@ class CarouselImageSlider extends StatelessWidget {
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                 color: Colors.white,
-                                fontSize: 30.sp,
+                                fontSize: trueScreen ? 30 : 35.sp,
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
-                            SizedBox(height: 20.0),
+                            20.verticalSpace,
+                            //SizedBox(height: 20.0),
                             Text(
                               imagePath.slideSub,
                               softWrap: true,
                               textAlign: TextAlign.center,
-                              style: TextStyle(color: colFour, fontSize: 16.sp),
+                              style: TextStyle(color: colFour, fontSize: 16),
                             ),
-                            SizedBox(height: 40.0),
+                            20.verticalSpace,
                             TxtBtn(
+                              trueSize: trueScreen ? false : true,
                               toCart: () {
                                 context.goNamed(RouteNames.login.name);
                               },
@@ -99,7 +104,7 @@ class CarouselImageSlider extends StatelessWidget {
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                 color: Colors.white,
-                                fontSize: 30.sp,
+                                fontSize: trueScreen ? 30 : 35.sp,
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
@@ -108,7 +113,7 @@ class CarouselImageSlider extends StatelessWidget {
                               imagePath.slideSub,
                               softWrap: true,
                               textAlign: TextAlign.center,
-                              style: TextStyle(color: colFour, fontSize: 16.sp),
+                              style: TextStyle(color: colFour, fontSize: 16),
                             ),
                             SizedBox(height: 120.0),
                           ],
@@ -175,7 +180,7 @@ class CategoryCarousel extends StatelessWidget {
                           borderRadius: BorderRadius.circular(10),
                         ),
                         padding: EdgeInsets.all(10),
-                        child: Icon(Icons.favorite_outline, color: colFour,)
+                        child: Icon(Icons.favorite_outline, color: colFour),
                       ),
                     ],
                   ),

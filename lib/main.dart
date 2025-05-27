@@ -13,9 +13,8 @@ class MyApp extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final routeState = ref.watch(routeProvider);
-    final screenSize = MediaQuery.of(context).size;
     return ScreenUtilInit(
-      designSize: Size(448, 998),
+      designSize: const Size(412, 915),
       minTextAdapt: true,
       splitScreenMode: true,
       builder: (context, child) {
@@ -26,7 +25,6 @@ class MyApp extends ConsumerWidget {
           theme: ThemeData(
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           ),
-
         );
       },
     );

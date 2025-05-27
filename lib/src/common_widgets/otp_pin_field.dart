@@ -27,8 +27,8 @@ class _OtpPinFieldState extends State<OtpPinField> {
       pinTheme: PinTheme(
         shape: PinCodeFieldShape.box,
         borderRadius: BorderRadius.circular(8),
-        fieldHeight: 100,
-        fieldWidth: 80,
+        fieldHeight: 60,
+        fieldWidth: 50,
         inactiveColor: Colors.grey,
         selectedColor: Colors.blue,
         activeColor: Colors.green,

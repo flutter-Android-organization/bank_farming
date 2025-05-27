@@ -23,6 +23,10 @@ class _IntroPageState extends ConsumerState<IntroPage> {
 
   @override
   Widget build(BuildContext context) {
+    double screenWidth = ScreenUtil().screenWidth;
+    double screenHeight = ScreenUtil().screenHeight;
+    double statusBarHeight = ScreenUtil().statusBarHeight;
+    double bottomBarHeight = ScreenUtil().bottomBarHeight;
     final introState = ref.watch(introViewModelProvider);
 
     return Scaffold(
@@ -107,7 +111,7 @@ class IntroBody extends StatelessWidget {
                   child: Text(
                     'Skip',
                     softWrap: true,
-                    style: TextStyle(color: colOne, fontSize: 18.sp),
+                    style: TextStyle(color: colOne, fontSize: 18),
                   ),
                 ),
               ],
@@ -118,7 +122,7 @@ class IntroBody extends StatelessWidget {
               onPressed: onForward,
               progressValue: progress,
               progressColor: colOne,
-              size: 80.sp,
+              size: 80,
             ),
         ],
       ),

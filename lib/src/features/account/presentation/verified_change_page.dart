@@ -1,5 +1,6 @@
 import 'package:bank_farming/src/constant/color_constant.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import '../../../common_widgets/txt_btn.dart';
 import '../../../routing/route_names.dart';
@@ -14,10 +15,14 @@ class VerifiedChangePage extends StatefulWidget {
 class _VerifiedChangePageState extends State<VerifiedChangePage> {
   @override
   Widget build(BuildContext context) {
+    double screenHeight = ScreenUtil().screenHeight;
+    double screenWidth = ScreenUtil().screenWidth;
+    bool trueScreen = screenHeight >= 915.0 || screenWidth >= 412;
+
     return Scaffold(
       backgroundColor: Colors.white,
       body: Padding(
-        padding: EdgeInsets.symmetric(vertical: 30, horizontal: 20),
+        padding: EdgeInsets.symmetric(vertical: trueScreen ? 0 : 30, horizontal: 20),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
