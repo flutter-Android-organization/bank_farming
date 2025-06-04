@@ -1,5 +1,3 @@
-import 'package:bank_farming/src/common_widgets/layout_widget.dart';
-import 'package:bank_farming/src/common_widgets/link_txt.dart';
 import 'package:bank_farming/src/features/account/presentation/signup_landscape.dart';
 import 'package:bank_farming/src/features/account/presentation/signup_portrait.dart';
 import 'package:flutter/material.dart';
@@ -7,12 +5,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gif/gif.dart';
 import 'package:go_router/go_router.dart';
-
-import '../../../common_widgets/horizontal_bar.dart';
-import '../../../common_widgets/icon_btn.dart';
-import '../../../common_widgets/input_text_widget.dart';
-import '../../../common_widgets/txt_btn.dart';
-import '../../../constant/color_constant.dart';
 import '../../../routing/route_names.dart';
 
 class SignupPage extends ConsumerStatefulWidget {
@@ -41,9 +33,8 @@ class _SignupPageState extends ConsumerState<SignupPage>
 
   @override
   Widget build(BuildContext context) {
-    double screenHeight = ScreenUtil().screenHeight;
     double screenWidth = ScreenUtil().screenWidth;
-    bool trueScreen = screenHeight >= 915.0 || screenWidth >= 412;
+    bool trueScreen = screenWidth > 650;
 
     return Scaffold(
       body:

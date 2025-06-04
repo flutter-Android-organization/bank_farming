@@ -1,6 +1,7 @@
 import 'package:bank_farming/src/common_widgets/carousel_image_slider.dart';
 import 'package:bank_farming/src/common_widgets/circular_chart.dart';
 import 'package:bank_farming/src/common_widgets/icon_btn.dart';
+import 'package:bank_farming/src/common_widgets/image_slider.dart';
 import 'package:bank_farming/src/common_widgets/search_field.dart';
 import 'package:bank_farming/src/features/home/data/data_source/horizontal_btn_data.dart';
 import 'package:bank_farming/src/features/home/data/repository/category_repository.dart';
@@ -52,109 +53,150 @@ class HomePage extends ConsumerStatefulWidget {
 class _HomePageState extends ConsumerState<HomePage> {
   int selectedIndex = 0;
 
+  List<String> imageUrls = [
+    'assets/images/categories/Agricultural.jpg',
+    'assets/images/categories/Campesinos.jpg',
+    'assets/images/categories/Farming.jpg',
+    'assets/images/categories/p9YK7f2c.jpg',
+    'assets/images/categories/xTsR9D1E.jpg',
+  ];
+
   @override
   Widget build(BuildContext context) {
     final catList = ref.read(categoryRepositoryProvider).fetchData();
     final txtBtnList = ref.read(horizontalBtnDataProvider);
 
-    return Padding(
-      padding: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
-      child: Column(
+    return Scaffold(
+      backgroundColor: colOne,
+      appBar: AppBarWidget(),
+      body: Stack(
         children: [
-          Row(
-            children: [
-              Expanded(
-                child: SearchField(searchController: TextEditingController()),
-              ),
-              SizedBox(width: 10.sp),
-              IconMenuButton()
-            ],
-          ),
-          SizedBox(height: 30),
-          AnimatedCircularChart(),
-          SizedBox(height: 30),
-          SizedBox(
-            height: 50, // Constrain height for horizontal scrolling
-            child: ListView.separated(
-              scrollDirection: Axis.horizontal,
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              itemCount: txtBtnList.length,
-              separatorBuilder: (context, index) => const SizedBox(width: 12),
-              itemBuilder: (BuildContext context, int index) {
-                final isSelected = selectedIndex == index;
-                final dataItem = txtBtnList[index];
-                return TextButton(
-                  style: TextButton.styleFrom(
-                    backgroundColor: isSelected ? colFour : colThree,
-                    elevation: 4.0,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
-                      side: BorderSide(color: isSelected ? colFour : colThree),
-                    ),
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
-                  ),
-                  onPressed: () {
-                    setState(() {
-                      selectedIndex = index;
-                    });
-                  },
-                  child: Text(
-                    dataItem.btnTxt,
-                    style: TextStyle(
-                      fontSize: 16,
-                      color: isSelected ? colThree : colFour,
-                    ),
-                  ),
-                );
-              },
-            ),
-          ),
-          SizedBox(height: 20),
           Container(
-            padding: EdgeInsets.all(10),
             decoration: BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage('assets/images/random/Download_Green.jpg'),
-                fit: BoxFit.cover,
+              gradient: LinearGradient(
+                begin: Alignment.bottomCenter,
+                end: Alignment.topCenter,
+                colors: [
+                  Colors.black, // Darker at the bottom
+                  Colors.transparent, // Transparent at center
+                ],
               ),
-              borderRadius: BorderRadius.circular(16),
             ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          ),
+          SingleChildScrollView(
+            padding: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+            child: Column(
               children: [
-                Column(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                Row(
                   children: [
-                    Text(
-                      'Total loan balance',
-                      overflow: TextOverflow.ellipsis,
-                      style: TextStyle(color: colFour),
-                    ),
-                    SizedBox(height: 5),
-                    Text(
-                      '\$1,890.10',
-                      overflow: TextOverflow.ellipsis,
-                      style: TextStyle(
-                        color: colFour,
-                        fontSize: 25,
-                        fontWeight: FontWeight.bold,
+                    Expanded(
+                      child: SearchField(
+                        searchController: TextEditingController(),
                       ),
                     ),
+                    SizedBox(width: 10.sp),
+                    IconMenuButton(),
                   ],
                 ),
-                IconBtnOne(
-                  onIconPressed: () {},
-                  fixed: 30,
-                  backgroundColor: colThree.withAlpha(60),
-                  iconSize: 20,
+                SizedBox(height: 30),
+                AnimatedCircularChart(),
+                SizedBox(height: 30),
+                SizedBox(
+                  height: 50, // Constrain height for horizontal scrolling
+                  child: ListView.separated(
+                    scrollDirection: Axis.horizontal,
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    itemCount: txtBtnList.length,
+                    separatorBuilder:
+                        (context, index) => const SizedBox(width: 12),
+                    itemBuilder: (BuildContext context, int index) {
+                      final isSelected = selectedIndex == index;
+                      final dataItem = txtBtnList[index];
+                      return TextButton(
+                        style: TextButton.styleFrom(
+                          backgroundColor: isSelected ? colFour : colThree,
+                          elevation: 4.0,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
+                            side: BorderSide(
+                              color: isSelected ? colFour : colThree,
+                            ),
+                          ),
+                          padding: const EdgeInsets.symmetric(horizontal: 20),
+                        ),
+                        onPressed: () {
+                          setState(() {
+                            selectedIndex = index;
+                          });
+                        },
+                        child: Text(
+                          dataItem.btnTxt,
+                          style: TextStyle(
+                            fontSize: 16,
+                            color: isSelected ? colThree : colFour,
+                          ),
+                        ),
+                      );
+                    },
+                  ),
                 ),
+                SizedBox(height: 20),
+                Container(
+                  padding: EdgeInsets.all(10),
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage(
+                        'assets/images/random/Download_Green.jpg',
+                      ),
+                      fit: BoxFit.cover,
+                    ),
+                    borderRadius: BorderRadius.circular(16),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Column(
+                        mainAxisSize: MainAxisSize.min,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Total loan balance',
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(color: colFour),
+                          ),
+                          SizedBox(height: 5),
+                          Text(
+                            '\$1,890.10',
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(
+                              color: colFour,
+                              fontSize: 25,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ],
+                      ),
+                      IconBtnOne(
+                        onIconPressed: () {},
+                        fixed: 30,
+                        backgroundColor: colThree.withAlpha(60),
+                        iconSize: 20,
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(height: 20),
+                CategoryCarousel(categoryProvider: catList),
+                SizedBox(height: 50),
+                SizedBox(height: 150),
               ],
             ),
           ),
-          SizedBox(height: 20),
-          CategoryCarousel(categoryProvider: catList),
-          SizedBox(height: 150),
+
+          FadeOnlyImageSlider(imageUrls: imageUrls)
+
+
+          // ManualFadeImageSlider(imageUrls: imageUrls)
         ],
       ),
     );

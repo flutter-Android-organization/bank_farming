@@ -42,46 +42,55 @@ class OtpLandscape extends StatelessWidget {
           ),
         ],
         rightSide: [
-          Form(
-            child: Column(
-              children: [
-                SizedBox(height: 20),
-                Center(
-                  child: Image.asset(
-                    'assets/images/random/Enter OTP.png',
-                    height: 200,
-                    width: 200,
+          LayoutBuilder(
+            builder: (context, constraints) {
+              final width =
+              constraints.maxWidth > 500 ? 500.0 : constraints.maxWidth;
+              return SizedBox(
+                width: width,
+                child:  Form(
+                  child: Column(
+                    children: [
+                      SizedBox(height: 20),
+                      Center(
+                        child: Image.asset(
+                          'assets/images/random/Enter OTP.png',
+                          height: 200,
+                          width: 200,
+                        ),
+                      ),
+                      SizedBox(height: 20),
+                      SizedBox(
+                        width: 0.4.sw,
+                        child: OtpPinField(
+                          onChanged: (String) {},
+                          onCompleted: (String) {},
+                        ),
+                      ),
+                      SizedBox(height: 40),
+                      TxtBtn(
+                        toCart: () {
+                          context.goNamed(RouteNames.createNew.name);
+                        },
+                        addText: 'Verify',
+                      ),
+                      SizedBox(height: 60),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text('Didn\'t receive code?'),
+                          LinkTxt(
+                            data: 'Resend',
+                            onTap: () => context.pop(context),
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: 40),
+                    ],
                   ),
                 ),
-                SizedBox(height: 20),
-                SizedBox(
-                  width: 0.4.sw,
-                  child: OtpPinField(
-                    onChanged: (String) {},
-                    onCompleted: (String) {},
-                  ),
-                ),
-                SizedBox(height: 40),
-                TxtBtn(
-                  toCart: () {
-                    context.goNamed(RouteNames.createNew.name);
-                  },
-                  addText: 'Verify',
-                ),
-                SizedBox(height: 60),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text('Didn\'t receive code?'),
-                    LinkTxt(
-                      data: 'Resend',
-                      onTap: () => context.pop(context),
-                    ),
-                  ],
-                ),
-                SizedBox(height: 40),
-              ],
-            ),
+              );
+            },
           ),
         ]
     );

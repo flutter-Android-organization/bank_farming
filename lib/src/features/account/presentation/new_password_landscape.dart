@@ -48,54 +48,63 @@ class NewPasswordLandscape extends StatelessWidget {
         ),
       ],
       rightSide: [
-        FormBuilder(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Center(
-                child: Image.asset(
-                  'assets/images/random/Reset password.png',
-                  width: 200,
-                  height: 200,
+        LayoutBuilder(
+          builder: (context, constraints) {
+            final width = constraints.maxWidth > 500 ? 500.0 : constraints.maxWidth;
+            return SizedBox(
+              width: width,
+              child: FormBuilder(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Center(
+                      child: Image.asset(
+                        'assets/images/random/Reset password.png',
+                        width: 200,
+                        height: 200,
+                      ),
+                    ),
+                    SizedBox(height: 20),
+                    TxtFormField(
+                      controller: newPasswordController,
+                      labelTxt: 'Password',
+                      leadIcon: Icons.password,
+                      obscure: true,
+                      suffixIcon: IconButton(
+                        highlightColor: colOne,
+                        splashColor: colOne,
+                        hoverColor: colOne,
+                        onPressed: () {},
+                        icon: Icon(Icons.visibility_outlined),
+                      ),
+                      validator: validateNewPassword,
+                    ),
+                    SizedBox(height: 20),
+                    TxtFormField(
+                      controller: confirmPasswordController,
+                      labelTxt: 'Password',
+                      leadIcon: Icons.password,
+                      obscure: true,
+                      suffixIcon: IconButton(
+                        highlightColor: colOne,
+                        splashColor: colOne,
+                        hoverColor: colOne,
+                        onPressed: () {},
+                        icon: Icon(Icons.visibility_outlined),
+                      ),
+                      validator: validateNewPassword,
+                    ),
+                    SizedBox(height: 40),
+                    TxtBtn(
+                      toCart: () => context.goNamed(RouteNames.verifyChange.name),
+                      addText: 'Reset Password',
+                    ),
+                    SizedBox(height: 40),
+                  ],
                 ),
               ),
-              SizedBox(height: 20),
-              TxtFormField(
-                controller: newPasswordController,
-                labelTxt: 'Password',
-                leadIcon: Icons.password,
-                obscure: true,
-                suffixIcon: IconButton(
-                  highlightColor: colOne,
-                  splashColor: colOne,
-                  hoverColor: colOne,
-                  onPressed: () {},
-                  icon: Icon(Icons.visibility_outlined),
-                ),
-                validator: validateNewPassword,
-              ),
-              SizedBox(height: 20),
-              TxtFormField(
-                controller: confirmPasswordController,
-                labelTxt: 'Password',
-                leadIcon: Icons.password,
-                obscure: true,
-                suffixIcon: IconButton(
-                  highlightColor: colOne,
-                  splashColor: colOne,
-                  hoverColor: colOne,
-                  onPressed: () {},
-                  icon: Icon(Icons.visibility_outlined),
-                ),
-                validator: validateNewPassword,
-              ),
-              SizedBox(height: 40),
-              TxtBtn(
-                toCart: () => context.goNamed(RouteNames.verifyChange.name),
-                addText: 'Reset Password',
-              ),
-            ],
-          ),
+            );
+          },
         ),
       ],
     );

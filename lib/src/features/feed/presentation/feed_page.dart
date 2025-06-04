@@ -1,4 +1,3 @@
-import 'package:bank_farming/src/common_widgets/horizontal_bar.dart';
 import 'package:bank_farming/src/features/feed/presentation/feed_card.dart';
 import 'package:bank_farming/src/features/feed/presentation/feed_view_model.dart';
 import 'package:bank_farming/src/utils/async_value_widget.dart';
@@ -16,7 +15,7 @@ class FeedAppBar extends StatelessWidget implements PreferredSizeWidget {
     return AppBar(
       backgroundColor: Colors.transparent,
       foregroundColor: Colors.white,
-      leading:  Padding(
+      leading: Padding(
         padding: EdgeInsets.all(5),
         child: RainbowOutline(
           child: CircleAvatar(
@@ -27,12 +26,12 @@ class FeedAppBar extends StatelessWidget implements PreferredSizeWidget {
       title: Text('Feed', style: TextStyle(fontWeight: FontWeight.bold)),
       actions: [
         TextButton(
-            onPressed: () {},
-            style: TextButton.styleFrom(
-              backgroundColor: colFour,
-              shape: CircleBorder(),
-            ),
-            child: Icon(Icons.more_vert_outlined)
+          onPressed: () {},
+          style: TextButton.styleFrom(
+            backgroundColor: colFour,
+            shape: CircleBorder(),
+          ),
+          child: Icon(Icons.more_vert_outlined),
         ),
         BadgeButton(showBadge: true, onPressed: () {}, icon: Icons.call),
       ],
@@ -42,7 +41,6 @@ class FeedAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Size get preferredSize => const Size.fromHeight(60);
 }
-
 
 class FeedPage extends ConsumerStatefulWidget {
   const FeedPage({super.key});
@@ -55,26 +53,48 @@ class _FeedPageState extends ConsumerState<FeedPage> {
   @override
   Widget build(BuildContext context) {
     final feedState = ref.watch(feedViewModelProvider);
-    return Column(
-      children: [
-        AsyncValueWidget(
-            value: feedState,
-            data: (feedStateData) {
-              return Column(
-                children:
-                feedStateData.map((memberData) {
-                  return FeedCard(
-                    feedProfile: memberData.feedProfile,
-                    feedName: memberData.feedName,
-                    feedLocation: memberData.feedLocation,
-                    feedCoverImage: memberData.feedCoverImage,
-                  );
-                }).toList(),
-              );
-            }
-        ),
-        SizedBox(height: 120,)
-      ],
+    return Scaffold(
+      appBar: FeedAppBar(),
+      backgroundColor: colOne,
+      body: Stack(
+        children: [
+          Container(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.bottomCenter,
+                end: Alignment.topCenter,
+                colors: [
+                  Colors.black, // Darker at the bottom
+                  Colors.transparent, // Transparent at center
+                ],
+              ),
+            ),
+          ),
+          SingleChildScrollView(
+            child: Column(
+              children: [
+                AsyncValueWidget(
+                  value: feedState,
+                  data: (feedStateData) {
+                    return Column(
+                      children:
+                          feedStateData.map((memberData) {
+                            return FeedCard(
+                              feedProfile: memberData.feedProfile,
+                              feedName: memberData.feedName,
+                              feedLocation: memberData.feedLocation,
+                              feedCoverImage: memberData.feedCoverImage,
+                            );
+                          }).toList(),
+                    );
+                  },
+                ),
+                SizedBox(height: 120),
+              ],
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

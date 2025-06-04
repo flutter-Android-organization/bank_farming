@@ -1,5 +1,4 @@
 import 'package:bank_farming/src/common_widgets/horizontal_bar.dart';
-import 'package:bank_farming/src/common_widgets/tile_widget.dart';
 import 'package:flutter/material.dart';
 
 import '../../../common_widgets/icon_btn.dart';

@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:go_router/go_router.dart';
-
 import '../../../common_widgets/icon_btn.dart';
-import '../../../common_widgets/input_text_widget.dart';
 import '../../../common_widgets/layout_widget.dart';
 import '../../../common_widgets/txt_btn.dart';
 import '../../../common_widgets/txt_form_field.dart';
@@ -99,6 +97,7 @@ class NewPasswordPortrait extends StatelessWidget {
                     toCart: () => context.goNamed(RouteNames.verifyChange.name),
                     addText: 'Reset Password',
                   ),
+                  SizedBox(height: 40),
                 ],
               ),
             ),

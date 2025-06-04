@@ -1,3 +1,4 @@
+import 'package:bank_farming/src/common_widgets/fade_in_widget.dart';
 import 'package:bank_farming/src/common_widgets/txt_btn.dart';
 import 'package:bank_farming/src/features/home/domain/category_slide.dart';
 import 'package:bank_farming/src/features/intro/domain/intro_slider.dart';
@@ -24,9 +25,8 @@ class CarouselImageSlider extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double screenHeight = ScreenUtil().screenHeight;
     double screenWidth = ScreenUtil().screenWidth;
-    bool trueScreen = screenHeight >= 915.0 || screenWidth >= 412;
+    bool trueScreen = screenWidth > 650;
 
     return CarouselSlider(
       carouselController: carouselController,
@@ -40,7 +40,9 @@ class CarouselImageSlider extends StatelessWidget {
       ),
       items:
           slideProvider.map((imagePath) {
-            return Container(
+            return FadeInWidget(
+              duration: Duration(seconds: 1),
+                child: Container(
               width: MediaQuery.of(context).size.width,
               decoration: BoxDecoration(
                 image: DecorationImage(
@@ -61,65 +63,65 @@ class CarouselImageSlider extends StatelessWidget {
                   ),
                 ),
                 child:
-                    isLastSlide
-                        ? Column(
-                          mainAxisSize: MainAxisSize.max,
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: [
-                            Text(
-                              imagePath.slideHeader,
-                              softWrap: true,
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: trueScreen ? 30 : 35.sp,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            20.verticalSpace,
-                            //SizedBox(height: 20.0),
-                            Text(
-                              imagePath.slideSub,
-                              softWrap: true,
-                              textAlign: TextAlign.center,
-                              style: TextStyle(color: colFour, fontSize: 16),
-                            ),
-                            20.verticalSpace,
-                            TxtBtn(
-                              trueSize: trueScreen ? false : true,
-                              toCart: () {
-                                context.goNamed(RouteNames.login.name);
-                              },
-                              addText: 'Get Started',
-                            ),
-                          ],
-                        )
-                        : Column(
-                          mainAxisSize: MainAxisSize.max,
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: [
-                            Text(
-                              imagePath.slideHeader,
-                              softWrap: true,
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: trueScreen ? 30 : 35.sp,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            SizedBox(height: 20.0),
-                            Text(
-                              imagePath.slideSub,
-                              softWrap: true,
-                              textAlign: TextAlign.center,
-                              style: TextStyle(color: colFour, fontSize: 16),
-                            ),
-                            SizedBox(height: 120.0),
-                          ],
-                        ),
+                isLastSlide
+                    ? Column(
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Text(
+                      imagePath.slideHeader,
+                      softWrap: true,
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: trueScreen ? 30 : 35.sp,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    20.verticalSpace,
+                    //SizedBox(height: 20.0),
+                    Text(
+                      imagePath.slideSub,
+                      softWrap: true,
+                      textAlign: TextAlign.center,
+                      style: TextStyle(color: colFour, fontSize: 16),
+                    ),
+                    20.verticalSpace,
+                    TxtBtn(
+                      trueSize: trueScreen ? false : true,
+                      toCart: () {
+                        context.goNamed(RouteNames.login.name);
+                      },
+                      addText: 'Get Started',
+                    ),
+                  ],
+                )
+                    : Column(
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Text(
+                      imagePath.slideHeader,
+                      softWrap: true,
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: trueScreen ? 30 : 35.sp,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    SizedBox(height: 20.0),
+                    Text(
+                      imagePath.slideSub,
+                      softWrap: true,
+                      textAlign: TextAlign.center,
+                      style: TextStyle(color: colFour, fontSize: 16),
+                    ),
+                    SizedBox(height: 120.0),
+                  ],
+                ),
               ),
-            );
+            ));
           }).toList(),
     );
   }

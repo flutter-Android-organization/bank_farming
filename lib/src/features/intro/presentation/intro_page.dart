@@ -6,7 +6,6 @@ import 'package:bank_farming/src/utils/async_value_widget.dart';
 import 'package:carousel_slider/carousel_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class IntroPage extends ConsumerStatefulWidget {
   const IntroPage({super.key});
@@ -23,10 +22,7 @@ class _IntroPageState extends ConsumerState<IntroPage> {
 
   @override
   Widget build(BuildContext context) {
-    double screenWidth = ScreenUtil().screenWidth;
-    double screenHeight = ScreenUtil().screenHeight;
-    double statusBarHeight = ScreenUtil().statusBarHeight;
-    double bottomBarHeight = ScreenUtil().bottomBarHeight;
+
     final introState = ref.watch(introViewModelProvider);
 
     return Scaffold(
@@ -97,6 +93,7 @@ class IntroBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    //final screenWith = MediaQuery.of(context).size.height;
     return Padding(
       padding: EdgeInsets.fromLTRB(20, 50, 20, 40),
       child: Column(

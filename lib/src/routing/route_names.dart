@@ -7,4 +7,9 @@ enum RouteNames {
   verifyChange,
   signup,
   pageNav,
+  home,
+  profile,
+  feed,
+  chat,
+  letChat,
 }

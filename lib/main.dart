@@ -20,7 +20,7 @@ class MyApp extends ConsumerWidget {
       builder: (context, child) {
         return  MaterialApp.router(
           debugShowCheckedModeBanner: false,
-          title: 'Flutter Demo',
+          title: 'Solv Lead Tracker',
           routerConfig: routeState,
           theme: ThemeData(
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),

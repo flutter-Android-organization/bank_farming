@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import '../constant/color_constant.dart';
 
-import 'package:flutter/material.dart';
 
 class AnimatedCircularChart extends StatefulWidget {
   const AnimatedCircularChart({super.key, this.size = 250});

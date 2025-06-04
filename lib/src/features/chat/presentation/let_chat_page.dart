@@ -58,12 +58,12 @@ class _LetChatPageState extends ConsumerState<LetChatPage> {
           onTap: () {},
           child: Row(
             children: [
-              RainbowOutline(
+              Hero(tag: '', child:  RainbowOutline(
                 child: CircleAvatar(
                   radius: 20,
                   backgroundImage: AssetImage(widget.userImage),
                 ),
-              ),
+              ),),
               SizedBox(width: 10),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,

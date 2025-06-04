@@ -6,8 +6,10 @@ import 'package:bank_farming/src/features/account/presentation/signup_page.dart'
 import 'package:bank_farming/src/features/account/presentation/verified_change_page.dart';
 import 'package:bank_farming/src/features/chat/presentation/chat_page.dart';
 import 'package:bank_farming/src/features/chat/presentation/let_chat_page.dart';
+import 'package:bank_farming/src/features/feed/presentation/feed_page.dart';
 import 'package:bank_farming/src/features/home/presentation/home_page.dart';
 import 'package:bank_farming/src/features/page_navigation/presentation/page_nav.dart';
+import 'package:bank_farming/src/features/profile/presentation/profile_page.dart';
 import 'package:bank_farming/src/routing/route_names.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -38,10 +40,59 @@ GoRouter route(ref) {
               GoRoute(
                 path: 'pageNav',
                 name: RouteNames.pageNav.name,
-                pageBuilder: (context, state) => MaterialPage(child: PageNav()),
+                pageBuilder:
+                    (context, state) => MaterialPage(child: PageNav()),
               ),
+              // StatefulShellRoute.indexedStack(
+              //   builder: (context, state, navigationShell) {
+              //     return PageNav(navigationShell: navigationShell);
+              //   },
+              //   branches: [
+              //     StatefulShellBranch(
+              //       routes: [
+              //         GoRoute(
+              //           path: 'home',
+              //           name: RouteNames.home.name,
+              //           pageBuilder:
+              //               (context, state) => MaterialPage(child: HomePage()),
+              //         ),
+              //       ],
+              //     ),
+              //     StatefulShellBranch(
+              //       routes: [
+              //         GoRoute(
+              //           path: 'profile',
+              //           name: RouteNames.profile.name,
+              //           pageBuilder:
+              //               (context, state) =>
+              //                   MaterialPage(child: ProfilePage()),
+              //         ),
+              //       ],
+              //     ),
+              //     StatefulShellBranch(
+              //       routes: [
+              //         GoRoute(
+              //           path: 'feed',
+              //           name: RouteNames.feed.name,
+              //           pageBuilder:
+              //               (context, state) => MaterialPage(child: FeedPage()),
+              //         ),
+              //       ],
+              //     ),
+              //     StatefulShellBranch(
+              //       routes: [
+              //         GoRoute(
+              //           path: 'chat',
+              //           name: RouteNames.chat.name,
+              //           pageBuilder:
+              //               (context, state) => MaterialPage(child: ChatPage()),
+              //         ),
+              //       ],
+              //     ),
+              //   ],
+              // ),
               GoRoute(
-                path: 'forgot',
+                path: '/forgot',
                 name: RouteNames.forget.name,
                 pageBuilder:
                     (context, state) => MaterialPage(child: ForgetPage()),

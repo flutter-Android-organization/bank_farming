@@ -29,9 +29,8 @@ class _LoginPageState extends ConsumerState<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
-    double screenHeight = ScreenUtil().screenHeight;
     double screenWidth = ScreenUtil().screenWidth;
-    bool trueScreen = screenHeight >= 915.0 || screenWidth >= 412;
+    bool trueScreen = screenWidth > 650;
 
     return Scaffold(
       body:

@@ -15,14 +15,12 @@ class VerifiedChangePage extends StatefulWidget {
 class _VerifiedChangePageState extends State<VerifiedChangePage> {
   @override
   Widget build(BuildContext context) {
-    double screenHeight = ScreenUtil().screenHeight;
     double screenWidth = ScreenUtil().screenWidth;
-    bool trueScreen = screenHeight >= 915.0 || screenWidth >= 412;
+    bool trueScreen = screenWidth > 650;
 
     return Scaffold(
       backgroundColor: Colors.white,
-      body: Padding(
-        padding: EdgeInsets.symmetric(vertical: trueScreen ? 0 : 30, horizontal: 20),
+      body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -51,16 +49,19 @@ class _VerifiedChangePageState extends State<VerifiedChangePage> {
                 fontWeight: FontWeight.bold,
               ),
             ),
-            SizedBox(height: 20),
-            TxtBtn(
-              toCart: () {
-                context.goNamed(RouteNames.login.name);
-              },
-              addText: 'Back to Login',
-            ),
+            Padding(
+              padding: EdgeInsets.all(20),
+              child: TxtBtn(
+                toCart: () {
+                  context.goNamed(RouteNames.login.name);
+                },
+                addText: 'Back to Login',
+                trueSize:  trueScreen ? false : true,
+              ),
+            )
           ],
         ),
-      ),
+      )
     );
   }
 }
