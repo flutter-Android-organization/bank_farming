@@ -1,10 +1,10 @@
 import 'package:bank_farming/src/features/account/presentation/login_landscape.dart';
 import 'package:bank_farming/src/features/account/presentation/login_portrait.dart';
 import 'package:bank_farming/src/routing/route_names.dart';
+import 'package:bank_farming/src/utils/reposive_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:go_router/go_router.dart';
 
@@ -29,40 +29,37 @@ class _LoginPageState extends ConsumerState<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
-    double screenWidth = ScreenUtil().screenWidth;
-    bool trueScreen = screenWidth > 650;
-
     return Scaffold(
-      body:
-          trueScreen
-              ? LoginLandscape(
-                formsKey: _formKey,
-                emailController: _emailController,
-                passwordController: _passwordController,
-                onPressed: () => context.goNamed(RouteNames.forget.name),
-                onTap: () => context.goNamed(RouteNames.signup.name),
-                toCart: _submitForm,
-                emailValidator: FormBuilderValidators.compose([
-                  FormBuilderValidators.required(),
-                ]),
-                passwordValidator: FormBuilderValidators.compose([
-                  FormBuilderValidators.required(),
-                ]),
-              )
-              : LoginPortrait(
-                formsKey: _formKey,
-                emailController: _emailController,
-                passwordController: _passwordController,
-                onPressed: () => context.goNamed(RouteNames.forget.name),
-                onTap: () => context.goNamed(RouteNames.signup.name),
-                toCart: _submitForm,
-                emailValidator: FormBuilderValidators.compose([
-                  FormBuilderValidators.required(),
-                ]),
-                passwordValidator: FormBuilderValidators.compose([
-                  FormBuilderValidators.required(),
-                ]),
-              ),
+      body: ResponsiveWidget(
+        compactChild: LoginPortrait(
+          formsKey: _formKey,
+          emailController: _emailController,
+          passwordController: _passwordController,
+          onPressed: () => context.goNamed(RouteNames.forget.name),
+          onTap: () => context.goNamed(RouteNames.signup.name),
+          toCart: _submitForm,
+          emailValidator: FormBuilderValidators.compose([
+            FormBuilderValidators.required(),
+          ]),
+          passwordValidator: FormBuilderValidators.compose([
+            FormBuilderValidators.required(),
+          ]),
+        ),
+        mediumChild: LoginLandscape(
+          formsKey: _formKey,
+          emailController: _emailController,
+          passwordController: _passwordController,
+          onPressed: () => context.goNamed(RouteNames.forget.name),
+          onTap: () => context.goNamed(RouteNames.signup.name),
+          toCart: _submitForm,
+          emailValidator: FormBuilderValidators.compose([
+            FormBuilderValidators.required(),
+          ]),
+          passwordValidator: FormBuilderValidators.compose([
+            FormBuilderValidators.required(),
+          ]),
+        ),
+      ),
     );
   }
 

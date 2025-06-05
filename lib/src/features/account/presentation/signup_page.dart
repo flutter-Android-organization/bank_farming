@@ -1,8 +1,8 @@
 import 'package:bank_farming/src/features/account/presentation/signup_landscape.dart';
 import 'package:bank_farming/src/features/account/presentation/signup_portrait.dart';
+import 'package:bank_farming/src/utils/reposive_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gif/gif.dart';
 import 'package:go_router/go_router.dart';
 import '../../../routing/route_names.dart';
@@ -33,26 +33,23 @@ class _SignupPageState extends ConsumerState<SignupPage>
 
   @override
   Widget build(BuildContext context) {
-    double screenWidth = ScreenUtil().screenWidth;
-    bool trueScreen = screenWidth > 650;
-
     return Scaffold(
-      body:
-          trueScreen
-              ? SignupLandscape(
-                userNameController: _userNameController,
-                signupEmailController: _signupEmailController,
-                signupPhoneController: _signupPhoneController,
-                signupPasswordController: _signupPasswordController,
-                toRegister: () => context.goNamed(RouteNames.otp.name),
-              )
-              : SignupPortrait(
-                userNameController: _userNameController,
-                signupEmailController: _signupEmailController,
-                signupPhoneController: _signupPhoneController,
-                signupPasswordController: _signupPasswordController,
-                toRegister: () => context.goNamed(RouteNames.otp.name),
-              ),
+      body: ResponsiveWidget(
+        compactChild: SignupPortrait(
+          userNameController: _userNameController,
+          signupEmailController: _signupEmailController,
+          signupPhoneController: _signupPhoneController,
+          signupPasswordController: _signupPasswordController,
+          toRegister: () => context.goNamed(RouteNames.otp.name),
+        ),
+        mediumChild: SignupLandscape(
+          userNameController: _userNameController,
+          signupEmailController: _signupEmailController,
+          signupPhoneController: _signupPhoneController,
+          signupPasswordController: _signupPasswordController,
+          toRegister: () => context.goNamed(RouteNames.otp.name),
+        ),
+      ),
     );
   }
 }

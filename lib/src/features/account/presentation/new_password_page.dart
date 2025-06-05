@@ -1,5 +1,6 @@
 import 'package:bank_farming/src/features/account/presentation/new_password_landscape.dart';
 import 'package:bank_farming/src/features/account/presentation/new_password_portrait.dart';
+import 'package:bank_farming/src/utils/reposive_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -18,20 +19,17 @@ class _NewPasswordPageState extends State<NewPasswordPage> {
 
   @override
   Widget build(BuildContext context) {
-    double screenWidth = ScreenUtil().screenWidth;
-    bool trueScreen = screenWidth > 650;
-
     return Scaffold(
-      body:
-          trueScreen
-              ? NewPasswordLandscape(
-                newPasswordController: _newPasswordController,
-                confirmPasswordController: _confirmPasswordController,
-              )
-              : NewPasswordPortrait(
-                newPasswordController: _newPasswordController,
-                confirmPasswordController: _confirmPasswordController,
-              ),
+      body: ResponsiveWidget(
+        compactChild: NewPasswordPortrait(
+          newPasswordController: _newPasswordController,
+          confirmPasswordController: _confirmPasswordController,
+        ),
+        mediumChild: NewPasswordLandscape(
+          newPasswordController: _newPasswordController,
+          confirmPasswordController: _confirmPasswordController,
+        ),
+      ),
     );
   }
 

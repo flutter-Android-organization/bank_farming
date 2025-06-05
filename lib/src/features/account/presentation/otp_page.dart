@@ -1,5 +1,6 @@
 import 'package:bank_farming/src/features/account/presentation/otp_landscape.dart';
 import 'package:bank_farming/src/features/account/presentation/otp_portrait.dart';
+import 'package:bank_farming/src/utils/reposive_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gif/gif.dart';
@@ -22,11 +23,12 @@ class _OtpPageState extends State<OtpPage> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    double screenWidth = ScreenUtil().screenWidth;
-    bool trueScreen = screenWidth > 650;
 
     return Scaffold(
-      body: trueScreen ? OtpLandscape() : OtpPortrait()
+      body: ResponsiveWidget(
+        compactChild: OtpPortrait(),
+        mediumChild: OtpLandscape(),
+      ),
     );
   }
 }

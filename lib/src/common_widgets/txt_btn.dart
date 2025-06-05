@@ -18,8 +18,7 @@ class TxtBtn extends StatelessWidget {
     return TextButton(
       style: OutlinedButton.styleFrom(
         backgroundColor: colOne,
-        padding: EdgeInsets.symmetric(vertical: 10,
-          horizontal: 30,),
+        padding: EdgeInsets.all(16),
         elevation: 4.0,
         shape: RoundedRectangleBorder(
           side: BorderSide(color: colOne),
@@ -31,7 +30,7 @@ class TxtBtn extends StatelessWidget {
         mainAxisSize: trueSize ? MainAxisSize.max : MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text(addText, style: TextStyle(fontSize: 18, color: Colors.white)),
+          Text(addText, style: TextStyle(fontSize: 14, color: Colors.white)),
         ],
       ),
     );

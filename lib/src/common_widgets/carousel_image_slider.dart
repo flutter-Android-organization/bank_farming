@@ -26,8 +26,7 @@ class CarouselImageSlider extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double screenWidth = ScreenUtil().screenWidth;
-    bool trueScreen = screenWidth > 650;
-
+    bool compactScreen = screenWidth < 600;
     return CarouselSlider(
       carouselController: carouselController,
       options: CarouselOptions(
@@ -74,7 +73,7 @@ class CarouselImageSlider extends StatelessWidget {
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         color: Colors.white,
-                        fontSize: trueScreen ? 30 : 35.sp,
+                        fontSize: compactScreen ? 35.sp : 30,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -88,7 +87,7 @@ class CarouselImageSlider extends StatelessWidget {
                     ),
                     20.verticalSpace,
                     TxtBtn(
-                      trueSize: trueScreen ? false : true,
+                      trueSize: compactScreen ? true : false,
                       toCart: () {
                         context.goNamed(RouteNames.login.name);
                       },
@@ -106,7 +105,7 @@ class CarouselImageSlider extends StatelessWidget {
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         color: Colors.white,
-                        fontSize: trueScreen ? 30 : 35.sp,
+                        fontSize: compactScreen ? 35.sp : 30,
                         fontWeight: FontWeight.bold,
                       ),
                     ),

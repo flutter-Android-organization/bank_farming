@@ -93,7 +93,6 @@ class IntroBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //final screenWith = MediaQuery.of(context).size.height;
     return Padding(
       padding: EdgeInsets.fromLTRB(20, 50, 20, 40),
       child: Column(
