@@ -6,7 +6,6 @@ class AsyncValueWidget<T> extends StatelessWidget {
   final AsyncValue<T> value;
   final Widget Function(T) data;
 
-  @override
   Widget build(BuildContext context) {
     return value.when(
         data: data,
